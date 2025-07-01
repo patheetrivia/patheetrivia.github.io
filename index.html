@@ -1,30 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Landing Page</title>
+  <meta charset="UTF-8" />
+  <title>Pathee Trivia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    /* --- Reset and base typography --- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     body {
-      font-family: sans-serif;
-      text-align: center;
-      padding: 50px;
-      background-color: #f9f9f9;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+      color: #333;
+      background: #f9f9f9;
     }
 
-    img {
+    /* --- Header & nav --- */
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 2rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      z-index: 1000;
+    }
+    .logo-img {
+      height: 48px;
+      width: auto;
+      margin-right: 0.75rem;
+    }
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.25rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 0.35rem 0.75rem;
+      border-radius: 0.5rem;
+      transition: background 0.2s ease;
+    }
+    nav a:hover,
+    nav a.active {
+      background: #e2e6ea;
+    }
+
+    /* --- Sections --- */
+    main {
+      padding: 2rem;
+    }
+    section {
+      display: none; /* all sections hidden by default */
+      max-width: 60ch;
+      margin: 0 auto 4rem;
+    }
+    section.active {
+      display: block; /* only the active section shows */
+    }
+    section h2 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    /* --- Hero / Home --- */
+    #home {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    #home img {
       max-width: 100%;
+      width: 400px;
       height: auto;
-      border-radius: 12px;
+      border: none;
+      border-radius: 0;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
-
-    h1 {
+    #home h2 {
       margin-top: 30px;
       font-size: 2.5rem;
     }
-
-    p {
+    #home p {
       font-size: 1.2rem;
       color: #555;
       max-width: 600px;
@@ -33,9 +104,84 @@
   </style>
 </head>
 <body>
-  <img src="good_logo.png" alt="Logo" style="width: 400px; box-shadow: none; border: none; border-radius: 0;">
-  <h1>Welcome to Pathee Trivia</h1>
-  <p>Want better trivia nights? <br> Contact our writer, Nate, at <a href="mailto:sandalowash@gmail.com">sandalowash@gmail.com</a>.</p>
+  <!-- ===== Header / Navigation ===== -->
+  <header>
+    <div style="display: flex; align-items: center;">
+      <img src="good_logo.png" alt="Pathee logo" class="logo-img" />
+      <h1>Pathee</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home" data-section="home" class="active">Home</a></li>
+        <li><a href="#about" data-section="about">About Pathee</a></li>
+        <li><a href="#sample" data-section="sample">Sample Work</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Main Content / Sections ===== -->
+  <main>
+    <!-- Home / Landing section (your original content) -->
+    <section id="home" class="active">
+      <img src="good_logo.png" alt="Pathee logo" />
+      <h2>Welcome to Pathee Trivia</h2>
+      <p>
+        Want better trivia nights? <br />
+        Contact our writer, Nate, at
+        <a href="mailto:sandalowash@gmail.com">sandalowash@gmail.com</a>.
+      </p>
+    </section>
+
+    <!-- About section -->
+    <section id="about">
+      <h2>About Pathee</h2>
+      <p>
+        Pathee is your go‑to trivia companion—curating clever questions, fun
+        facts, and hidden patterns that keep curious minds engaged. Whether
+        you’re hosting pub trivia or simply flexing your knowledge muscles, we
+        help level up your quiz game.
+      </p>
+    </section>
+
+    <!-- Sample Work / Portfolio section -->
+    <section id="sample">
+      <h2>Sample Work</h2>
+      <p>
+        Showcase example rounds, creative wordplay puzzles, or a portfolio of
+        past events here. Drop in images, tables, or interactive elements—this
+        section is your sandbox.
+      </p>
+    </section>
+  </main>
+
+  <!-- ===== Tabs / Show‑Hide Script ===== -->
+  <script>
+    const links = document.querySelectorAll("nav a");
+    const sections = document.querySelectorAll("main section");
+
+    links.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // Activate link
+        links.forEach((l) => l.classList.remove("active"));
+        link.classList.add("active");
+
+        // Activate matching section
+        const target = link.dataset.section;
+        sections.forEach((s) => s.classList.toggle("active", s.id === target));
+
+        // Update URL hash (w/o scrolling)
+        history.replaceState(null, "", `#${target}`);
+      });
+    });
+
+    // If user lands with a hash (e.g., #about), activate the correct tab
+    const initial = location.hash.replace("#", "");
+    if (initial) {
+      const initialLink = document.querySelector(`nav a[data-section="${initial}"]`);
+      if (initialLink) initialLink.click();
+    }
+  </script>
 </body>
 </html>
-
