@@ -59,24 +59,10 @@
       background: #e2e6ea;
     }
 
-    /* --- Sections --- */
+    /* --- Hero / Home --- */
     main {
       padding: 2rem;
     }
-    section {
-      display: none; /* all sections hidden by default */
-      max-width: 60ch;
-      margin: 0 auto 4rem;
-    }
-    section.active {
-      display: block; /* only the active section shows */
-    }
-    section h2 {
-      font-size: 1.75rem;
-      margin-bottom: 1rem;
-    }
-
-    /* --- Hero / Home --- */
     #home {
       display: flex;
       flex-direction: column;
@@ -89,7 +75,7 @@
       height: auto;
       border: none;
       border-radius: 0;
-      box-shadow: none; /* removed shadow */
+      box-shadow: none;
     }
     #home h2 {
       margin-top: 30px;
@@ -110,19 +96,19 @@
       <img src="good_logo.png" alt="Pathee logo" class="logo-img" />
       <h1>Pathee</h1>
     </div>
+    <!-- Links to separate HTML files -->
     <nav>
       <ul>
-        <li><a href="#home" data-section="home" class="active">Home</a></li>
-        <li><a href="#about" data-section="about">About Pathee</a></li>
-        <li><a href="#sample" data-section="sample">Sample Work</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About Pathee</a></li>
+        <li><a href="sample.html">Sample Work</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- ===== Main Content / Sections ===== -->
+  <!-- ===== Main Content (Home page only) ===== -->
   <main>
-    <!-- Home / Landing section (your original content) -->
-    <section id="home" class="active">
+    <section id="home">
       <img src="good_logo.png" alt="Pathee logo" />
       <h2>Welcome to Pathee Trivia</h2>
       <p>
@@ -131,57 +117,6 @@
         <a href="mailto:sandalowash@gmail.com">sandalowash@gmail.com</a>.
       </p>
     </section>
-
-    <!-- About section -->
-    <section id="about">
-      <h2>About Pathee</h2>
-      <p>
-        Pathee is your go‑to trivia companion—curating clever questions, fun
-        facts, and hidden patterns that keep curious minds engaged. Whether
-        you’re hosting pub trivia or simply flexing your knowledge muscles, we
-        help level up your quiz game.
-      </p>
-    </section>
-
-    <!-- Sample Work / Portfolio section -->
-    <section id="sample">
-      <h2>Sample Work</h2>
-      <p>
-        Showcase example rounds, creative wordplay puzzles, or a portfolio of
-        past events here. Drop in images, tables, or interactive elements—this
-        section is your sandbox.
-      </p>
-    </section>
   </main>
-
-  <!-- ===== Tabs / Show‑Hide Script ===== -->
-  <script>
-    const links = document.querySelectorAll("nav a");
-    const sections = document.querySelectorAll("main section");
-
-    links.forEach((link) => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        // Activate link
-        links.forEach((l) => l.classList.remove("active"));
-        link.classList.add("active");
-
-        // Activate matching section
-        const target = link.dataset.section;
-        sections.forEach((s) => s.classList.toggle("active", s.id === target));
-
-        // Update URL hash (w/o scrolling)
-        history.replaceState(null, "", `#${target}`);
-      });
-    });
-
-    // If user lands with a hash (e.g., #about), activate the correct tab
-    const initial = location.hash.replace("#", "");
-    if (initial) {
-      const initialLink = document.querySelector(`nav a[data-section="${initial}"]`);
-      if (initialLink) initialLink.click();
-    }
-  </script>
 </body>
 </html>

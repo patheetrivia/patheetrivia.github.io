@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About • Pathee Trivia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* --- Reset & base styles --- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+      color: #333;
+      background: #f9f9f9;
+    }
+
+    /* --- Header & navigation (no logo img) --- */
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 2rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      z-index: 1000;
+    }
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.25rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 0.35rem 0.75rem;
+      border-radius: 0.5rem;
+      transition: background 0.2s ease;
+    }
+    nav a:hover,
+    nav a.active {
+      background: #e2e6ea;
+    }
+
+    /* --- Main content --- */
+    main {
+      padding: 2rem 2rem 4rem;
+      max-width: 60ch;
+      margin: 0 auto;
+    }
+    h2 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Header / Navigation (no logo image) ===== -->
+  <header>
+    <h1>Pathee</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About Pathee</a></li>
+        <li><a href="sample.html">Sample Work</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== About content ===== -->
+  <main>
+    <h2>About Pathee</h2>
+    <p>
+      Pathee is your go‑to trivia companion—curating clever questions, fun facts,
+      and hidden patterns that keep curious minds engaged. Whether you’re hosting
+      pub trivia, levelling up a corporate event, or just challenging friends for
+      bragging rights, we supply rounds that spark “ohhh” moments.
+    </p>
+    <p>
+      Founded by veteran quizmaster Nate Sandalow‑Ash, Pathee draws on years of
+      writing and hosting to deliver puzzles that balance accessibility with a
+      satisfying aha‑factor. Each set is painstakingly researched, tested, and
+      tuned for flow—so you can focus on the fun, not the fact‑checking.
+    </p>
+    <p>
+      Have a theme in mind? Need a custom game? Let’s chat:
+      <a href="mailto:sandalowash@gmail.com">sandalowash@gmail.com</a>.
+    </p>
+  </main>
+</body>
+</html>

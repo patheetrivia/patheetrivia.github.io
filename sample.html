@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sample Work • Pathee Trivia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* --- Reset & base styles --- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+      color: #333;
+      background: #f9f9f9;
+    }
+
+    /* --- Header & navigation (no logo img) --- */
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 2rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      z-index: 1000;
+    }
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.25rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 0.35rem 0.75rem;
+      border-radius: 0.5rem;
+      transition: background 0.2s ease;
+    }
+    nav a:hover,
+    nav a.active {
+      background: #e2e6ea;
+    }
+
+    /* --- Main content --- */
+    main {
+      padding: 2rem 2rem 4rem;
+      max-width: 70ch;
+      margin: 0 auto;
+    }
+    h2 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+    ul.examples {
+      margin-left: 1.25rem;
+      list-style: disc;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Header / Navigation (no logo image) ===== -->
+  <header>
+    <h1>Pathee</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Pathee</a></li>
+        <li><a href="sample.html" class="active">Sample Work</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Sample Work content ===== -->
+  <main>
+    <h2>Sample Work</h2>
+    <p>
+      Below is a taste of the kinds of rounds Pathee creates. Each is designed
+      to balance accessibility and cleverness—so beginners learn something new
+      while seasoned quizzers still get a challenge.
+    </p>
+
+    <ul class="examples">
+      <li><strong>Hidden Pronouns Round –</strong> Ten answers conceal a 3‑letter pronoun inside longer words or phrases.</li>
+      <li><strong>Before & After Chain –</strong> Classic Jeopardy‑style mash‑ups (e.g., “<em>The Godfather</em> of Pearl”).</li>
+      <li><strong>Georgist Grab Bag –</strong> Economics trivia framed around land‑value tax history.</li>
+      <li><strong>Sneaky Homophones –</strong> Clues where the answer pairs sound alike (e.g., “serial” & “cereal”).</li>
+      <li><strong>Timeline Twist –</strong> Arrange five historical events in chronological order—sounds easier than it is!</li>
+    </ul>
+
+    <p>
+      Want a custom round or full quiz deck? Email Nate at
+      <a href="mailto:sandalowash@gmail.com">sandalowash@gmail.com</a> and
+      we’ll craft something bespoke.
+    </p>
+  </main>
+</body>
+</html>
