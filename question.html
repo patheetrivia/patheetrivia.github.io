@@ -65,6 +65,7 @@
       text-align: center;
     }
     #question {
+      white-space: pre-wrap;
       font-size: 1.4rem;
       line-height: 1.4;
       max-width: 60ch;
@@ -117,14 +118,21 @@
     const questions = [
       "Who visited Lima in July 1835, Sydney in January 1836, and Cape Town in May 1836?",
       { text: "What does each country's color represent?", imgSrc: "europe.png" },
-      { text: "Who is featured in this image?", imgSrc: "malala.png" },
+      { text: `At age 11, she started anonymously blogging for the BBC. \nAt age 15, she moved to England.\nAt age 23, she announced a multi-year deal with Apple TV.\n
+      \n
+      Who is she?` },
       "What piece of media includes the word 'sexy' seven times, 'yeoja' four times, and 'salangseuleoun' four times?",
-      "What 50-element set has members such as 'Ua mau ke ea o ka ʻāina i ka pono' and 'Si quaeris peninsulam amoenam circumspice'?",
+      {
+      text: `What 50-element set has members such as 'Ua mau ke ea o ka ʻāina i ka pono'\nand 'Si quaeris peninsulam amoenam circumspice'?`
+      },
       "What seven-letter word derives from a Nahautl term used as a euphemism for 'testicle'?",
       "How many words appear exactly once in a Shakespeare play?",
       "What is the combined population of every Washington County in the US?",
       "When was a can opener first patented?",
       "How many human births have been recorded in Antarctica?",
+      "What 2015 blockbuster do the subtitle and poster for the Sharknado 3 sequel parody?",
+      "What do historians speculate spread from Byzantium to Italy before other European regions partially due to the importance of pasta in the Italian diet?",
+      "Which state's Department of Transportation created a four-word anti-littering slogan that morphed into a larger cultural phenomenon frequently found on t-shirts and souvenirs?",
       { text: "What do the blue states have in common?", imgSrc: "indig.png" },
       { text: "How would you label the right-hand column?", tables: [["Fruit Fly","4"],["Axolotl","14"],["Alaskan King Crab","104"]] },
       { text: "How would you label the right-hand column?", tables: [["'I live my life a quarter mile at a time.'","7"],["'So long, partner.'","3"],["'I know it was you, Fredo.'","2"]] }
