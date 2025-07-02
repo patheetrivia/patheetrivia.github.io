@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Trivia Question • Pathee</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* Basic reset & layout */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      text-align: center;
+      padding: 2rem;
+    }
+    a.logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #333;
+      margin-bottom: 2rem;
+    }
+    #question {
+      font-size: 1.4rem;
+      line-height: 1.4;
+      max-width: 60ch;
+    }
+  </style>
+</head>
+<body>
+  <!-- Clicking the logo simply reloads this page, triggering a new random question -->
+  <a href="question.html" class="logo">Pathee</a>
+
+  <div id="question">Loading question…</div>
+
+  <script>
+    const questions = [
+      "Stand‑in question #1",
+      "Stand‑in question #2",
+      "Stand‑in question #3",
+      "Stand‑in question #4",
+      "Stand‑in question #5",
+      "Stand‑in question #6",
+      "Stand‑in question #7",
+      "Stand‑in question #8",
+      "Stand‑in question #9",
+      "Stand‑in question #10",
+    ];
+
+    const pickRandom = () => questions[Math.floor(Math.random() * questions.length)];
+    document.getElementById("question").textContent = pickRandom();
+  </script>
+</body>
+</html>
