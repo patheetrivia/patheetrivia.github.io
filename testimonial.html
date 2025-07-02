@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Testimonials • Pathee Trivia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* --- Reset & base styles --- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+      color: #333;
+      background: #f9f9f9;
+    }
+
+    /* --- Header layout (consistent across pages) --- */
+    header {
+      position: sticky;
+      top: 0;
+      background: #f9f9f9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 2rem;
+      z-index: 1000;
+    }
+    .left-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .logo-img {
+      height: 40px;
+      width: auto;
+    }
+    /* Pathee link styling */
+    .logo-link,
+    .logo-link:link,
+    .logo-link:visited {
+      display: inline-block;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      line-height: 40px;
+      margin: 0;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.25rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 0.35rem 0.75rem;
+      border-radius: 0.5rem;
+      transition: background 0.2s ease;
+      line-height: 1.55;
+    }
+    nav a:hover,
+    nav a.active {
+      background: #e2e6ea;
+    }
+
+    /* --- Testimonials layout --- */
+    main {
+      max-width: 70ch;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    h1 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .testimonial {
+      background: #fff;
+      border-left: 4px solid #4c8bf5;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+    .testimonial cite {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="left-header">
+      <a href="index.html"><img src="good_logo.png" alt="Pathee logo" class="logo-img" /></a>
+      <a href="question.html" class="logo-link">Pathee</a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="testimonial.html">Testimonials</a></li>
+        <li><a href="question.html">Questions?</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>What People Are Saying</h1>
+
+    <div class="testimonial">
+      <p>"Pathee's trivia nights consistently fill up our bar on typically slow weekdays. It's the best community builder we've ever hosted."</p>
+      <cite>— Jane Doe, Owner of The Tipsy Tavern</cite>
+    </div>
+
+    <div class="testimonial">
+      <p>"Our patrons can't stop raving about the clever wordplay and hidden patterns. Nate's rounds keep everyone engaged for hours!"</p>
+      <cite>— Carlos Ramirez, Events Manager at The Brewski Pub</cite>
+    </div>
+
+    <div class="testimonial">
+      <p>"Hosting Pathee trivia boosted our average check by 20% and brought in a fresh crowd of trivia buffs every week."</p>
+      <cite>— Lisa Nguyen, General Manager at Alley Oops Bar</cite>
+    </div>
+
+    <div class="testimonial">
+      <p>"I love how each question feels like a mini puzzle. It's accessible for newcomers yet still challenging for seasoned quizzers."</p>
+      <cite>— Mark Thompson, Trivia Champion and Regular Player</cite>
+    </div>
+  </main>
+</body>
+</html>
