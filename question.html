@@ -1,33 +1,74 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Trivia Question • Pathee</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    /* Basic reset & layout */
+    /* --- Reset & base styles --- */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
     body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+      color: #333;
+      background: #f9f9f9;
+    }
+
+    /* --- Header & navigation (logo looks like plain text) --- */
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 2rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      z-index: 1000;
+    }
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .logo-link {
+      color: inherit;
+      text-decoration: none;
+    }
+    .logo-link:hover {
+      text-decoration: none; /* keep non‑hyperlink look */
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.25rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 0.35rem 0.75rem;
+      border-radius: 0.5rem;
+      transition: background 0.2s ease;
+    }
+    nav a:hover,
+    nav a.active {
+      background: #e2e6ea;
+    }
+
+    /* --- Question area --- */
+    main {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: #f9f9f9;
-      color: #333;
-      text-align: center;
+      min-height: calc(100vh - 72px); /* full viewport minus header height */
       padding: 2rem;
-    }
-    a.logo {
-      font-size: 1.5rem;
-      font-weight: 600;
-      text-decoration: none;
-      color: #333;
-      margin-bottom: 2rem;
+      text-align: center;
     }
     #question {
       font-size: 1.4rem;
@@ -37,10 +78,22 @@
   </style>
 </head>
 <body>
-  <!-- Clicking the logo simply reloads this page, triggering a new random question -->
-  <a href="question.html" class="logo">Pathee</a>
+  <!-- ===== Header (logo reloads this page for a new random question) ===== -->
+  <header>
+    <h1><a href="question.html" class="logo-link">Pathee</a></h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Pathee</a></li>
+        <li><a href="sample.html">Sample Work</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <div id="question">Loading question…</div>
+  <!-- ===== Question content ===== -->
+  <main>
+    <div id="question">Loading question…</div>
+  </main>
 
   <script>
     const questions = [
