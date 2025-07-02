@@ -36,11 +36,8 @@
       letter-spacing: 0.5px;
     }
     .logo-link {
-      color: inherit;
-      text-decoration: none;
-    }
-    .logo-link:hover {
-      text-decoration: none; /* keep non‑hyperlink look */
+      all: unset;
+      cursor: pointer;
     }
     nav ul {
       list-style: none;
@@ -60,13 +57,13 @@
       background: #e2e6ea;
     }
 
-    /* --- Question area --- */
+    /* --- Main area --- */
     main {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: calc(100vh - 72px); /* full viewport minus header height */
+      min-height: calc(100vh - 72px);
       padding: 2rem;
       text-align: center;
     }
@@ -74,13 +71,26 @@
       font-size: 1.4rem;
       line-height: 1.4;
       max-width: 60ch;
+      margin-bottom: 2rem;
+    }
+    table {
+      border-collapse: collapse;
+      margin-top: 1rem;
+      display: none; /* hidden by default */
+    }
+    td {
+      border: 1px solid #ccc;
+      padding: 0.75rem 1.25rem;
+      font-size: 1rem;
     }
   </style>
 </head>
 <body>
-  <!-- ===== Header (logo reloads this page for a new random question) ===== -->
   <header>
-    <h1><a href="question.html" class="logo-link">Pathee</a></h1>
+    <div class="left-header">
+      <img src="good_logo.png" alt="Pathee logo" class="logo-img" />
+      <a href="question.html" class="logo-link">Pathee</a>
+    </div>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -90,9 +100,19 @@
     </nav>
   </header>
 
-  <!-- ===== Question content ===== -->
   <main>
     <div id="question">Loading question…</div>
+
+    <table id="bonus-table">
+      <tr>
+        <td>Row 1, Col 1</td>
+        <td>Row 1, Col 2</td>
+      </tr>
+      <tr>
+        <td>Row 2, Col 1</td>
+        <td>Row 2, Col 2</td>
+      </tr>
+    </table>
   </main>
 
   <script>
@@ -106,11 +126,18 @@
       "Stand‑in question #7",
       "Stand‑in question #8",
       "Stand‑in question #9",
-      "Stand‑in question #10",
+      { text: "Stand‑in question #10 (with table)", hasTable: true },
     ];
 
     const pickRandom = () => questions[Math.floor(Math.random() * questions.length)];
-    document.getElementById("question").textContent = pickRandom();
+    const chosen = pickRandom();
+
+    const qText = typeof chosen === "string" ? chosen : chosen.text;
+    document.getElementById("question").textContent = qText;
+
+    if (typeof chosen === "object" && chosen.hasTable) {
+      document.getElementById("bonus-table").style.display = "table";
+    }
   </script>
 </body>
 </html>
