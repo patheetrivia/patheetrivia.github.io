@@ -143,14 +143,36 @@
       { text: "How would you label the right-hand column", tables: [[ [" 'I live my life a quarter mile at a time.' ","7"],[" 'So long, partner.' ","3"],[" 'I know it was you, Fredo.' ","2"] ]] }
     ];
 
+    // Pick a random question
     const chosen = questions[Math.floor(Math.random() * questions.length)];
-    document.getElementById("question").textContent = typeof chosen === "string" ? chosen : chosen.text;
 
-    if (chosen.hasImage) {
-      document.getElementById("question-img").style.display = "block";
+    // Display question text
+    const questionEl = document.getElementById("question");
+    questionEl.textContent = typeof chosen === 'string' ? chosen : chosen.text;
+
+    // Image handling
+    const imgEl = document.getElementById("question-img");
+    imgEl.style.display = 'none';
+    if (chosen.imgSrc) {
+      imgEl.src = chosen.imgSrc;
+      imgEl.style.display = 'block';
     }
-    if (chosen.hasTable) {
-      document.getElementById("bonus-table").style.display = "table";
+
+    // Table handling
+    const container = document.getElementById("table-container");
+    container.innerHTML = '';
+    if (Array.isArray(chosen.tables)) {
+      const tbl = document.createElement('table');
+      chosen.tables.forEach(row => {
+        const tr = document.createElement('tr');
+        row.forEach(cell => {
+          const td = document.createElement('td');
+          td.textContent = cell;
+          tr.appendChild(td);
+        });
+        tbl.appendChild(tr);
+      });
+      container.appendChild(tbl);
     }
   </script>
 </body>
