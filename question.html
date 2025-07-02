@@ -18,39 +18,39 @@
       background: #f9f9f9;
     }
 
-    /* --- Header & navigation (logo looks like plain text) --- */
+    /* --- Header layout --- */
     header {
       position: sticky;
       top: 0;
-      background: #f9f9f9;
+      background: #fff;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0.75rem 2rem;
       z-index: 1000;
     }
-    .logo-img {
-      height: 48px;
-      width: auto;
-      margin-right: 0.75rem;
+    .left-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
+    .logo-img {
+      height: 40px;
+      width: auto;
+    }
+    /* Plain text style for the Pathee link */
     .logo-link,
     .logo-link:link,
     .logo-link:visited {
-      all: unset;
-      color: inherit;
+      display: inline-block;
       text-decoration: none;
+      color: inherit;
       cursor: pointer;
       font-size: 1.5rem;
       font-weight: 600;
       letter-spacing: 0.5px;
       line-height: 40px;
       margin: 0;
-    }
-    header h1 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
     }
     nav ul {
       list-style: none;
@@ -64,6 +64,7 @@
       padding: 0.35rem 0.75rem;
       border-radius: 0.5rem;
       transition: background 0.2s ease;
+      line-height: 1.55;
     }
     nav a:hover,
     nav a.active {
@@ -84,12 +85,19 @@
       font-size: 1.4rem;
       line-height: 1.4;
       max-width: 60ch;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
+    }
+    #question-img {
+      max-width: 100%;
+      height: auto;
+      display: none;
+      margin-top: 1rem;
+      border-radius: 8px;
     }
     table {
       border-collapse: collapse;
       margin-top: 1rem;
-      display: none; /* hidden by default */
+      display: none;
     }
     td {
       border: 1px solid #ccc;
@@ -102,52 +110,49 @@
   <header>
     <div class="left-header">
       <a href="index.html"><img src="good_logo.png" alt="Pathee logo" class="logo-img" /></a>
+      <a href="question.html" class="logo-link">Pathee</a>
     </div>
     <nav>
       <ul>
-        <li><a href="about.html">About</a></li>
-        <li><a href="testimonial.html">Testimonials</a></li>
-        <li><a href="question.html">Questions?</a></li>
+        <li><a href="about.html">About Pathee</a></li>
+        <li><a href="sample.html">Sample Work</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
     <div id="question">Loading question…</div>
-
+    <img id="question-img" src="" alt="Trivia image" />
     <table id="bonus-table">
-      <tr>
-        <td>Row 1, Col 1</td>
-        <td>Row 1, Col 2</td>
-      </tr>
-      <tr>
-        <td>Row 2, Col 1</td>
-        <td>Row 2, Col 2</td>
-      </tr>
+      <tr><td>Row 1, Col 1</td><td>Row 1, Col 2</td></tr>
+      <tr><td>Row 2, Col 1</td><td>Row 2, Col 2</td></tr>
     </table>
   </main>
 
   <script>
     const questions = [
-      "Stand‑in question #1",
-      "Stand‑in question #2",
-      "Stand‑in question #3",
-      "Stand‑in question #4",
-      "Stand‑in question #5",
-      "Stand‑in question #6",
-      "Stand‑in question #7",
-      "Stand‑in question #8",
-      "Stand‑in question #9",
-      { text: "Stand‑in question #10 (with table)", hasTable: true },
+      "Who visited Lima in July 1835, Sydney in January 1836, and Cape Town in May 1836?",
+      { text: "What does each country's color represent?", imgSrc: "europe.png" },
+      {imgSrc: "malala.png" },
+      "What piece of media includes the word 'sexy' seven times, 'yeoja' four times, and 'salangseuleoun' four times?",
+      "What 50-element set has members such as 'Ua mau ke ea o ka ʻāina i ka pono' and 'Si quaeris peninsulam amoenam circumspice'?",
+      "What 7-letter word derives from a Nahautl term used as a euphemism for 'testicle'?",
+      "How many words appear exactly once in a Shakespeare play?",
+      "What is the combined population of every Washington County in the US?",
+      "When was a can opener first patented?",
+      "How many human births have been recorded in Antarctica?",
+      { text: "What do the blue states have in common?", imgSrc: "europe.png" },
+      { text: "How would you label the right-hand column"", tables: [[ ["Fruit Fly","4"],["Axolotl","14"],["Alaskan King Crab","104"] ]] },
+      { text: "How would you label the right-hand column"", tables: [[ [" 'I live my life a quarter mile at a time.' ","7"],[" 'So long, partner.' ","3"],[" 'I know it was you, Fredo.' ","2"] ]] }
     ];
 
-    const pickRandom = () => questions[Math.floor(Math.random() * questions.length)];
-    const chosen = pickRandom();
+    const chosen = questions[Math.floor(Math.random() * questions.length)];
+    document.getElementById("question").textContent = typeof chosen === "string" ? chosen : chosen.text;
 
-    const qText = typeof chosen === "string" ? chosen : chosen.text;
-    document.getElementById("question").textContent = qText;
-
-    if (typeof chosen === "object" && chosen.hasTable) {
+    if (chosen.hasImage) {
+      document.getElementById("question-img").style.display = "block";
+    }
+    if (chosen.hasTable) {
       document.getElementById("bonus-table").style.display = "table";
     }
   </script>
