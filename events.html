@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Public Events • Pathee Trivia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* --- Reset & base styles --- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55; color: #333; background: #f9f9f9;
+    }
+
+    /* --- Header & navigation --- */
+    header {
+      position: sticky; top: 0; background: #f9f9f9;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 2rem; z-index: 1000; border-bottom: 1px solid #ececec;
+    }
+    .logo-img { height: 40px; width: auto; margin-right: 0.75rem; }
+    nav ul { list-style: none; display: flex; gap: 1.25rem; }
+    nav a { text-decoration: none; color: #333; font-weight: 500; padding: 0.35rem 0.75rem;
+            border-radius: 0.5rem; transition: background 0.2s ease; }
+    nav a:hover, nav a.active { background: #e2e6ea; }
+
+    /* --- Main content --- */
+    main { padding: 2rem 2rem 4rem; max-width: 70ch; margin: 0 auto; }
+    h2 { font-size: 1.75rem; margin-bottom: 1rem; }
+    p  { font-size: 1.05rem; color: #555; margin-bottom: 1rem; }
+
+    /* --- Events list --- */
+    .events { display: grid; gap: 1rem; margin-top: 0.5rem; }
+    .event {
+      background: #fff; border: 1px solid #e6e6e6; border-radius: 0.75rem; padding: 1rem;
+      display: grid; grid-template-columns: 6.5rem 1fr; gap: 1rem; align-items: center;
+    }
+    .page-note {
+      margin-top: 1.25rem;
+      font-size: 0.95rem;
+      color: #666;
+      text-align: center;
+    }
+    .date { text-align: center; }
+    .date .dow { font-weight: 600; font-size: 0.9rem; color: #555; }
+    .date .day { font-size: 1.6rem; font-weight: 700; line-height: 1.1; }
+    .date .mon { text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.8rem; color: #666; }
+    .details h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
+    .meta { color: #555; font-size: 0.98rem; margin-bottom: 0.5rem; }
+    .actions a { display: inline-block; margin-right: 0.6rem; text-decoration: none; font-weight: 600; }
+    .empty { color: #666; font-style: italic; padding: 0.5rem 0; }
+    @media (max-width: 520px) {
+      .event { grid-template-columns: 1fr; }
+      .date { display: flex; gap: 0.5rem; justify-content: flex-start; }
+      .date .day { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Header / Navigation ===== -->
+  <header>
+    <div class="left-header">
+      <a href="index.html"><img src="good_logo.png" alt="Pathee logo" class="logo-img" /></a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="events.html">Public Events</a></li>
+        <li><a href="testimonial.html">Testimonials</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="question.html">Questions?</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Combined Events ===== -->
+  <main>
+    <h2>Upcoming Public Events</h2>
+    <p>PATHEE currently hosts biweekly public trivia nights at bars in Manhattan and Jersey City.
+      Bring your friends (max team size is 6) or show up as a free agent; admission is free, and
+      no reservation is needed, though we recommend arriving early.
+    </p>
+    <section id="events-all" class="events">
+      <p class="empty">Loading upcoming events…</p>
+    </section>
+  </main>
+
+  <!-- ===== Script: build the next 8 dates from two biweekly series ===== -->
+  <script>
+  (function () {
+    // --- Config ---
+    const SERIES = [
+      {
+        name: "Brindle Room",
+        // Monday Aug 11, 2025 @ 8:30 PM ET
+        startISO: "2025-08-11T20:30:00-04:00",
+        durationMinutes: 120,
+        cadenceDays: 14,
+        tz: "America/New_York",
+        location: { name: "Brindle Room", address: "647 E 11th St, New York, NY" },
+      },
+      {
+        name: "Brightside Tavern",
+        // Tuesday Aug 19, 2025 @ 8:30 PM ET
+        startISO: "2025-08-19T19:00:00-04:00",
+        durationMinutes: 120,
+        cadenceDays: 14,
+        tz: "America/New_York",
+        location: { name: "Brightside Tavern", address: "141 Bright St, Jersey City, NJ" },
+      }
+    ];
+    const TOTAL_COUNT = 8;
+
+    // --- Helpers (intentionally simple & cross-browser safe) ---
+    const $ = (sel) => document.querySelector(sel);
+
+    // Format in ET regardless of viewer location
+    function fmtParts(d, tz) {
+      const opt = (o) => new Intl.DateTimeFormat("en-US", { timeZone: tz, ...o }).format(d);
+      return {
+        dow:      opt({ weekday: "short" }),                       // Mon
+        day:      opt({ day: "2-digit" }),                         // 11
+        monYear:  opt({ month: "short", year: "numeric" }),        // Aug 2025
+        time:     opt({ hour: "numeric", minute: "2-digit", hour12: true }) // 8:30 PM
+      };
+    }
+
+    // Next occurrence at or after "now"
+    function nextOnOrAfter(seed, periodMs, now) {
+      const diff = now - seed;
+      const steps = Math.max(0, Math.ceil(diff / periodMs));
+      return new Date(seed.getTime() + steps * periodMs);
+    }
+
+    // Build some upcoming dates for a series
+    function generate(series, count, now) {
+      const seed = new Date(series.startISO);              // absolute instant
+      const period = series.cadenceDays * 86400000;        // 14 days
+      const first = nextOnOrAfter(seed, period, now);
+      const out = [];
+      for (let i = 0; i < count; i++) {
+        const start = new Date(first.getTime() + i * period);
+        const end   = new Date(start.getTime() + series.durationMinutes * 60000);
+        out.push({ series, start, end });
+      }
+      return out;
+    }
+
+    function render() {
+      const container = $("#events-all");
+      if (!container) return;
+
+      const now = new Date();
+      const perSeries = TOTAL_COUNT + 4; // buffer so merge has enough
+
+      const events = SERIES
+        .flatMap(s => generate(s, perSeries, now))
+        .filter(e => e.start >= now)
+        .sort((a, b) => a.start - b.start)
+        .slice(0, TOTAL_COUNT);
+
+      if (!events.length) {
+        container.innerHTML = '<p class="empty">No upcoming events right now — check back soon!</p>';
+        return;
+      }
+
+      const cards = events.map(({ series, start, end }) => {
+        const pStart = fmtParts(start, series.tz);
+        const pEnd   = fmtParts(end, series.tz);
+        const timeRange = `${pStart.time}–${pEnd.time} ET`;
+
+        // Schema-friendly datetimes in UTC (Z) — simple and safe
+        const startISO = start.toISOString();
+        const endISO   = end.toISOString();
+
+        return `
+          <article class="event" itemscope itemtype="https://schema.org/Event">
+            <div class="date">
+              <div class="dow">${pStart.dow}</div>
+              <div class="day">${pStart.day}</div>
+              <div class="mon">${pStart.monYear}</div>
+            </div>
+            <div class="details">
+              <h3 itemprop="name">${series.name}</h3>
+              <div class="meta">
+                <time itemprop="startDate" datetime="${startISO}">${timeRange}</time>
+                <meta itemprop="endDate" content="${endISO}">
+                <br>
+                <span itemprop="location" itemscope itemtype="https://schema.org/Place">
+                  <span itemprop="name">${series.location.name}</span>,
+                  <span itemprop="address">${series.location.address}</span>
+                </span>
+              </div>
+              <div class="actions">
+                <a href="https://maps.google.com/?q=${encodeURIComponent(series.location.name)}" target="_blank" rel="noopener">Map</a>
+              </div>
+            </div>
+          </article>
+        `;
+      });
+
+      container.innerHTML = cards.join("");
+    }
+
+    // Run after DOM is ready (and also if script is at the end, just in case)
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", render);
+    } else {
+      render();
+    }
+  })();
+  </script>
+<p class="page-note">
+  Want to host PATHEE at your venue?
+  Email <a href="mailto:sandalowash@gmail.com">sandalowash@gmail.com</a>.
+</p>
+</main>
+</body>
+</html>
