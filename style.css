@@ -199,8 +199,8 @@ main.home-main {
 }
 
 .clients-logos img {
-  height: 28px;
-  width: auto;
+  width: 130px;
+  height: 40px;
   object-fit: contain;
   filter: grayscale(1) opacity(0.45);
   transition: filter 0.25s;
