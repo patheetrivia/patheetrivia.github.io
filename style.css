@@ -122,13 +122,22 @@ a:hover { text-decoration: underline; }
   transform: translateY(-2px);
 }
 
+/* ── Home main (no max-width constraint) ── */
+main.home-main {
+  max-width: 100%;
+  padding: 0;
+}
+
 /* ── Hero (index.html) ── */
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 5rem 1rem 4rem;
+  min-height: calc(100vh - 64px);
+  padding: 4rem 1rem;
+  position: relative;
 }
 
 .hero-logo {
@@ -162,6 +171,43 @@ a:hover { text-decoration: underline; }
   gap: 0.75rem;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+/* ── Client logo bar ── */
+.clients {
+  padding: 3.5rem 2rem 4rem;
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.clients-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+.clients-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.clients-logos img {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(1) opacity(0.45);
+  transition: filter 0.25s;
+}
+
+.clients-logos img:hover {
+  filter: grayscale(0) opacity(1);
 }
 
 /* ── Page note ── */
