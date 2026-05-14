@@ -4,102 +4,7 @@
   <meta charset="UTF-8" />
   <title>Testimonials • Pathee Trivia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    /* --- Reset & base styles --- */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.55;
-      color: #333;
-      background: #f9f9f9;
-    }
-
-    /* --- Header layout (consistent across pages) --- */
-    header {
-      position: sticky;
-      top: 0;
-      background: #f9f9f9;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 2rem;
-      z-index: 1000;
-    }
-    .left-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .logo-img {
-      height: 40px;
-      width: auto;
-    }
-    /* Pathee link styling */
-    .logo-link,
-    .logo-link:link,
-    .logo-link:visited {
-      display: inline-block;
-      text-decoration: none;
-      color: inherit;
-      cursor: pointer;
-      font-size: 1.5rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      line-height: 40px;
-      margin: 0;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.25rem;
-    }
-    nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      padding: 0.35rem 0.75rem;
-      border-radius: 0.5rem;
-      transition: background 0.2s ease;
-      line-height: 1.55;
-    }
-    nav a:hover,
-    nav a.active {
-      background: #e2e6ea;
-    }
-
-    /* --- Testimonials layout --- */
-    main {
-      max-width: 70ch;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    h1 {
-      font-size: 2rem;
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-    .testimonial {
-      background: #f9f9f9;
-      border-left: 4px solid #4c8bf5;
-      padding: 1rem 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-    .testimonial p {
-      font-style: italic;
-      margin-bottom: 0.75rem;
-    }
-    .testimonial cite {
-      display: block;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: #555;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
@@ -110,7 +15,7 @@
       <ul>
         <li><a href="about.html">About</a></li>
         <li><a href="events.html">Public Events</a></li>
-        <li><a href="testimonial.html">Testimonials</a></li>
+        <li><a href="testimonial.html" aria-current="page">Testimonials</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="question.html">Questions?</a></li>
       </ul>
@@ -137,12 +42,12 @@
 
     <div class="testimonial">
       <p>"I once skipped a friend's wedding to attend PATHEE."</p>
-      <cite>— Tobin F, IBM </cite>
+      <cite>— Tobin F, IBM</cite>
     </div>
 
     <div class="testimonial">
       <p>"The bad thing about PATHEE is that it makes all other trivia unbearable."</p>
-      <cite>— Axel F, Jane Street </cite>
+      <cite>— Axel F, Jane Street</cite>
     </div>
 
     <div class="testimonial">

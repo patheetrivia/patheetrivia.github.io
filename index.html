@@ -4,105 +4,9 @@
   <meta charset="UTF-8" />
   <title>Pathee Trivia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    /* --- Reset and base typography --- */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.55;
-      color: #333;
-      background: #f9f9f9;
-    }
-
-    /* --- Header & nav --- */
-    header {
-      position: sticky;
-      top: 0;
-      background: #f9f9f9;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 2rem;
-      z-index: 1000;
-    }
-    .logo-img {
-      height: 40px;
-      width: auto;
-      margin-right: 0.75rem;
-    }
-    .logo-link,
-    .logo-link:link,
-    .logo-link:visited {
-      all: unset;
-      color: inherit;
-      text-decoration: none;
-      cursor: pointer;
-      font-size: 1.5rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      line-height: 40px;
-      margin: 0;
-    }
-    header h1 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.25rem;
-    }
-    nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      padding: 0.35rem 0.75rem;
-      border-radius: 0.5rem;
-      transition: background 0.2s ease;
-    }
-    nav a:hover,
-    nav a.active {
-      background: #e2e6ea;
-    }
-
-    /* --- Hero / Home --- */
-    main {
-      padding: 2rem;
-    }
-    #home {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    #home img {
-      max-width: 100%;
-      width: 400px;
-      height: auto;
-      border: none;
-      border-radius: 0;
-      box-shadow: none;
-    }
-    #home h2 {
-      margin-top: 30px;
-      font-size: 2.5rem;
-    }
-    #home p {
-      font-size: 1.2rem;
-      color: #555;
-      max-width: 600px;
-      margin: 20px auto 0;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- ===== Header / Navigation ===== -->
   <header>
     <div class="left-header">
       <a href="index.html"><img src="good_logo.png" alt="Pathee logo" class="logo-img" /></a>
@@ -118,15 +22,15 @@
     </nav>
   </header>
 
-  <!-- ===== Main Content (Home page only) ===== -->
   <main>
-    <section id="home">
-      <img src="good_logo.png" alt="Pathee logo" />
-      <h2>Welcome to PATHEE Trivia</h2>
-      <p>
-        Want better trivia nights? <br />
-        <a href="contact.html">Let us know</a>.</p>.
-      </p>
+    <section class="hero">
+      <img src="good_logo.png" alt="Pathee logo" class="hero-logo" />
+      <h1>Want <em>better</em> trivia nights?</h1>
+      <p>PATHEE creates original puzzles that test your creativity, wits, and knowledge — no generic questions, no googling required.</p>
+      <div class="hero-actions">
+        <a href="events.html" class="btn">See Public Events</a>
+        <a href="contact.html" class="btn btn-ghost">Get in Touch</a>
+      </div>
     </section>
   </main>
 </body>

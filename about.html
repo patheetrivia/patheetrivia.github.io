@@ -4,113 +4,16 @@
   <meta charset="UTF-8" />
   <title>About • Pathee Trivia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    /* --- Reset & base styles --- */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.55;
-      color: #333;
-      background: #f9f9f9;
-    }
-
-    /* --- Header & navigation (no logo img) --- */
-    header {
-      position: sticky;
-      top: 0;
-      background: #f9f9f9;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 2rem;
-      z-index: 1000;
-    }
-    .logo-img {
-      height: 40px;
-      width: auto;
-      margin-right: 0.75rem;
-    }
-    .logo-link,
-    .logo-link:link,
-    .logo-link:visited {
-      all: unset;
-      color: inherit;
-      text-decoration: none;
-      cursor: pointer;
-      font-size: 1.5rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      line-height: 40px;
-      margin: 0;
-    }
-    header h1 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.25rem;
-    }
-    nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      padding: 0.35rem 0.75rem;
-      border-radius: 0.5rem;
-      transition: background 0.2s ease;
-    }
-    nav a:hover,
-    nav a.active {
-      background: #e2e6ea;
-    }
-
-    /* --- Main content --- */
-    main {
-      padding: 2rem 2rem 4rem;
-      max-width: 60ch;
-      margin: 0 auto;
-    }
-    h2 {
-      font-size: 1.75rem;
-      margin-bottom: 1rem;
-    }
-    p {
-      font-size: 1.1rem;
-      color: #555;
-      margin-bottom: 1.5rem;
-    }
-    .gallery {
-      display: grid;
-      gap: 0.75rem;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      margin-top: 1rem;
-    }
-    .gallery figure { margin: 0; }
-    .gallery img {
-      width: 100%;
-      height: 180px;          /* crop to a neat row; remove if you want full height */
-      object-fit: cover;
-      border-radius: 0.6rem;
-      border: 1px solid #e6e6e6;
-      background: #eee;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- ===== Header / Navigation (no logo image) ===== -->
   <header>
     <div class="left-header">
       <a href="index.html"><img src="good_logo.png" alt="Pathee logo" class="logo-img" /></a>
     </div>
     <nav>
       <ul>
-        <li><a href="about.html">About</a></li>
+        <li><a href="about.html" aria-current="page">About</a></li>
         <li><a href="events.html">Public Events</a></li>
         <li><a href="testimonial.html">Testimonials</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -119,21 +22,21 @@
     </nav>
   </header>
 
-  <!-- ===== About content ===== -->
   <main>
     <h2>What is PATHEE?</h2>
     <p>
-      PATHEE Trivia is a product unlike any other. We don’t
-      rattle off "you-know-it-or-you-don't" questions that can be answered with quick
+      PATHEE Trivia is a product unlike any other. We don't rattle off
+      "you-know-it-or-you-don't" questions that can be answered with quick
       Google searches; instead, we create unique puzzles that test your
-      creativity, wits, collaboration, and knowledge on a wide range of subjects. Our team painstakingly designs and
-      writes original rounds completely unlike generic trivia fare offered
-      by other companies. Come to one of our public events or check out our testimonials to see why players
-      consistently prefer PATHEE.
+      creativity, wits, collaboration, and knowledge on a wide range of subjects.
+      Our team painstakingly designs and writes original rounds completely unlike
+      generic trivia fare offered by other companies. Come to one of our public
+      events or check out our testimonials to see why players consistently prefer
+      PATHEE.
     </p>
     <p>
-      If you want PATHEE at your corporate event, private party, or bar, <br>
-      let's <a href="contact.html">chat</a>.</p>.
+      If you want PATHEE at your corporate event, private party, or bar,
+      let's <a href="contact.html">chat</a>.
     </p>
 
     <section class="gallery" aria-label="Pathee photos">
