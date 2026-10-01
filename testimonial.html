@@ -5,13 +5,15 @@
   <title>Testimonials • Pathee Trivia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
+  <script src="nav.js" defer></script>
 </head>
 <body>
   <header>
     <div class="left-header">
       <a href="index.html"><img src="good_logo.png" alt="Pathee logo" class="logo-img" /></a>
     </div>
-    <nav>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><svg class="icon-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="icon-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <nav id="site-nav">
       <ul>
         <li><a href="about.html">About</a></li>
         <li><a href="testimonial.html" aria-current="page">Testimonials</a></li>
