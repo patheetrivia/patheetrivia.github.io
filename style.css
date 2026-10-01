@@ -492,7 +492,6 @@ main.centered {
   color: var(--text);
 }
 
-.table-container tr:first-child td { background: var(--card); }
 
 #more-btn {
   appearance: none;
@@ -520,7 +519,8 @@ main.centered {
 }
 
 @media (max-width: 640px) {
-  .gallery { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+  .gallery img { height: 150px; }
   .testimonials { grid-template-columns: 1fr; }
   header { padding: 0.875rem 1.25rem; }
   .nav-toggle { display: block; }
